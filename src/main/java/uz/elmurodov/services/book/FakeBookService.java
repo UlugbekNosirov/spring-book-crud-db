@@ -14,7 +14,6 @@ import uz.elmurodov.services.file.FileStorageService;
 import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
-import java.util.UUID;
 
 
 @Service("fakeBookService")
@@ -47,9 +46,9 @@ public class FakeBookService implements BookService {
     public String create(BookCreateDto dto, MultipartFile file) throws IOException {
         Book book = mapper.toEntity(dto);
         ResourceDto resourceDto = fileStorageService.store(file);
-        book.setResourceDto(resourceDto);
+        book.setPath(resourceDto.getPath());
         BOOK_LIST.add(book);
-        return book.getId();
+        return book.getIdAsString();
     }
 
     @Override

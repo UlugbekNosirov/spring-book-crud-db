@@ -19,8 +19,8 @@
                         <th>name</th>
                         <th>author</th>
                         <th>page count</th>
-                        <th>Details</th>
                         <th>Action</th>
+                        <th>File</th>
                     </tr>
                     </thead>
 
@@ -31,12 +31,9 @@
                         <td th:text="${book.author}"></td>
                         <td th:text="${book.pageCount}"></td>
                         <td>
-                            <ol th:object="${book.resourceDto}">
-                                <li th:text="*{originalName}"></li>
-                                <li th:text="*{size}"></li>
-                                <li th:text="*{contentType}"></li>
-                                <li th:text="*{path}"></li>
-                            </ol>
+                            <a th:href="@{/play/{filepath}(filepath = ${book.path})}">
+                                Play
+                            </a>
                         </td>
                         <td>
                             <a th:href="@{/book/detail/{id}/(id=${book.id}) }" class="btn btn-primary">Details</a> ||

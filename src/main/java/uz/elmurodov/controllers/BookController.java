@@ -21,7 +21,7 @@ public class BookController {
     private final BookService bookService;
 
     @Autowired
-    public BookController(@Qualifier("fakeBookService") BookService bookService) {
+    public BookController(@Qualifier("postgresqlBookService") BookService bookService) {
         this.bookService = bookService;
     }
 

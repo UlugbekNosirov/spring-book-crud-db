@@ -1,13 +1,14 @@
 package uz.elmurodov.models;
 
 
+import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
-import uz.elmurodov.dto.file.ResourceDto;
 
 import java.util.UUID;
 
 
+@Builder
 @Getter
 @Setter
 public class Book {
@@ -15,20 +16,21 @@ public class Book {
     private String name;
     private Integer pageCount;
     private String author;
-    private ResourceDto resourceDto;
+    private String path;
 
     public Book() {
         this.id = UUID.randomUUID();
     }
 
-    public Book(UUID id, String name, String author, Integer pageCount) {
+    public Book(UUID id, String name, Integer pageCount, String author, String path) {
         this.id = id;
         this.name = name;
-        this.author = author;
         this.pageCount = pageCount;
+        this.author = author;
+        this.path = path;
     }
 
-    public String getId() {
-        return id.toString();
+    public String getIdAsString() {
+        return this.id.toString();
     }
 }

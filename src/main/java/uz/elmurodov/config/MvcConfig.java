@@ -5,6 +5,8 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
@@ -12,6 +14,8 @@ import org.thymeleaf.spring5.SpringTemplateEngine;
 import org.thymeleaf.spring5.templateresolver.SpringResourceTemplateResolver;
 import org.thymeleaf.spring5.view.ThymeleafViewResolver;
 import org.thymeleaf.templatemode.TemplateMode;
+
+import java.sql.DriverManager;
 
 
 @Configuration
@@ -60,6 +64,21 @@ public class MvcConfig implements WebMvcConfigurer {
         CommonsMultipartResolver multipartResolver = new CommonsMultipartResolver();
         multipartResolver.setMaxUploadSize(10000000000L);
         return multipartResolver;
+    }
+
+    @Bean
+    public DriverManagerDataSource driverManagerDataSource() {
+        DriverManagerDataSource driverManagerDataSource = new DriverManagerDataSource();
+        driverManagerDataSource.setDriverClassName("org.postgresql.Driver");
+        driverManagerDataSource.setUrl("jdbc:postgresql://localhost:5432/spring_b_3?currentSchema=spring_jdbc");
+        driverManagerDataSource.setUsername("javohir");
+        driverManagerDataSource.setPassword("admin123");
+        return driverManagerDataSource;
+    }
+
+    @Bean
+    public JdbcTemplate jdbcTemplate(DriverManagerDataSource driverManagerDataSource){
+        return  new JdbcTemplate(driverManagerDataSource);
     }
 
 }
