@@ -36,9 +36,14 @@
                             </a>
                         </td>
                         <td>
-                            <a th:href="@{/book/detail/{id}/(id=${book.id}) }" class="btn btn-primary">Details</a> ||
-                            <a th:href="@{/book/delete/{id}/(id=${book.id}) }" class="btn btn-danger">Delete</a> ||
-                            <a th:href="@{/book/update/{id}/(id=${book.id}) }" class="btn btn-secondary">Update</a>
+                            <a th:href="@{/book/detail/{id}/(id=${book.id}) }" class="btn btn-info">
+                                About...
+                            </a> ||
+                            <a th:href="${book.path}" class="btn btn-success">
+                                Download
+                            </a>
+                            <!--                            <a th:href="@{/book/delete/{id}/(id=${book.id}) }" class="btn btn-danger">Delete</a> ||-->
+                            <!--                            <a th:href="@{/book/update/{id}/(id=${book.id}) }" class="btn btn-secondary">Update</a>-->
                         </td>
                     </tr>
                     </tbody>

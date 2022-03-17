@@ -6,17 +6,32 @@
 <section th:include="fragment.html :: navbar"></section>
 <div class="container mt-5">
     <div class="row">
-        <ul>
-            <li th:text="${book.name}"></li>
-            <li th:text="${book.author}"></li>
-            <li th:text="${book.pageCount}"></li>
-            <ul th:object="${book.resourceDto}">
-                <li th:text="*{originalName}"></li>
-                <li th:text="*{size}"></li>
-                <li th:text="*{contentType}"></li>
-                <li><a th:href="*{path}">Download</a></li>
-            </ul>
-        </ul>
+        <section>
+            <a th:href="@{${book.path}}">
+                <img th:src="${book.img_path}" class="img-thumbnail" alt="Cinque Terre" width="254" height="500">
+            </a>
+            <h5>Click for download file...</h5>
+        </section>
+        <dl>
+            <dt>Book Name</dt>
+            <dd>
+                <li th:text="${book.name}"></li>
+            </dd>
+
+            <dt>Book Author</dt>
+            <dd>
+                <li th:text="${book.author}"></li>
+            </dd>
+            <dt>Page Count</dt>
+            <dd>
+                <li th:text="${book.pageCount}"></li>
+            </dd>
+            <dt>Extra Actions</dt>
+            <dd>
+                <a th:href="@{/book/delete/{id}/(id=${book.id}) }" class="btn btn-danger">Delete</a> ||
+                <a th:href="@{/book/update/{id}/(id=${book.id}) }" class="btn btn-secondary">Update</a>
+            </dd>
+        </dl>
     </div>
 </div>
 </body>
